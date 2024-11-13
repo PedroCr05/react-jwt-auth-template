@@ -5,7 +5,7 @@ const BACKEND_URL = import.meta.VITE_EXPRESS_BACKEND_URL;
 const signup = async (formData) => {
   try {
     const res = await axios.get(`${BACKEND_URL}/users/signup`, formData);
-
+    console.log(res.data);
     if (res.data.error) {
       throw new Error(res.data.error);
     }
@@ -16,7 +16,6 @@ const signup = async (formData) => {
       const user = JSON.parse(atob(res.data.token.split(`.`)[1]));
       return user;
     }
-    return res.data;
   } catch (error) {
     console.log(error);
     throw error;
@@ -37,8 +36,6 @@ const signin = async (formData) => {
       const user = JSON.parse(atob(res.data.token.split(`.`)[1]));
       return user;
     }
-
-    return res.data;
   } catch (error) {
     console.log(error);
     throw error;

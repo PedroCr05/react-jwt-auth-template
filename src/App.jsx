@@ -11,6 +11,8 @@ const App = () => {
   // To test this state. You can put a truthy value to get the opposite result
   const [user, setUser] = useState(authService.getUser());
 
+  console.log(user);
+
   const handleSignout = () => {
     authService.signout();
     setUser(null);
