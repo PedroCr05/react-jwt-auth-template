@@ -10,10 +10,24 @@ const signup = async (formData) => {
       throw new Error(res.err);
     }
     return res.data;
-  } catch (err) {
-    console.log(err);
-    throw err;
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
 };
 
-export { signup };
+const signin = async (formData) => {
+  try {
+    const res = await axios.get(`${BACKEND_URL}/users/signin`, formData);
+
+    if (res.error) {
+      throw new Error(res.error);
+    }
+    return res.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export { signup, signin };
