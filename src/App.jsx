@@ -1,16 +1,23 @@
-// src/App.jsx
-
 import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import Dashboard from "./components/DashBoard/DashBoard";
+import Landing from "./components/Landing/Landing";
 import NavBar from "./components/NavBar/NavBar";
 
 const App = () => {
-  const [user, setUser] = useState(null);
+  // To test this state. You can put a truthy value to get the opposite result
+  const [user, setUser] = useState(true);
 
   return (
     <>
       <NavBar user={user} />
-      <h1>Hello world!</h1>
+      <Routes>
+        {user ? (
+          <Route path="/" element={<Dashboard user={user} />} />
+        ) : (
+          <Route path="/" element={<Landing />} />
+        )}
+      </Routes>
     </>
   );
 };
