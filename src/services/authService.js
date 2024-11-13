@@ -16,8 +16,7 @@ const signup = async (formData) => {
       const user = JSON.parse(atob(res.data.token.split(`.`)[1]));
       return user;
     }
-
-    return res.data.data;
+    return res.data;
   } catch (error) {
     console.log(error);
     throw error;
