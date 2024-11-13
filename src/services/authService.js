@@ -6,10 +6,11 @@ const signup = async (formData) => {
   try {
     const res = await axios.get(`${BACKEND_URL}/users/signup`, formData);
 
-    if (res.err) {
-      throw new Error(res.err);
+    if (res.data.error) {
+      throw new Error(res.data.error);
     }
-    return res.data;
+
+    return res.data.data;
   } catch (error) {
     console.log(error);
     throw error;
@@ -20,9 +21,15 @@ const signin = async (formData) => {
   try {
     const res = await axios.get(`${BACKEND_URL}/users/signin`, formData);
 
-    if (res.error) {
-      throw new Error(res.error);
+    if (res.data.error) {
+      throw new Error(res.data.error);
     }
+
+    if (res.data.token) {
+      const user = JSON.parse(atob(res.data.token.split(`.`)[1]));
+      return user;
+    }
+
     return res.data;
   } catch (error) {
     console.log(error);

@@ -1,8 +1,9 @@
-import { Route, Routes } from "react-router-dom";
 import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import Dashboard from "./components/DashBoard/DashBoard";
 import Landing from "./components/Landing/Landing";
 import NavBar from "./components/NavBar/NavBar";
+import SignInForm from "./components/SignInForm/SignInForm";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
 
 const App = () => {
@@ -18,7 +19,9 @@ const App = () => {
         ) : (
           <Route path="/" element={<Landing />} />
         )}
+
         <Route path="/signup" element={<SignUpForm setUser={setUser} />} />
+        <Route path="/signin" element={<SignInForm setUser={setUser} />} />
       </Routes>
     </>
   );
