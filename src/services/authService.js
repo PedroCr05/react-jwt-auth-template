@@ -1,11 +1,14 @@
 import axios from "axios";
 
-const BACKEND_URL = import.meta.VITE_EXPRESS_BACKEND_URL;
+// Forgot the ".env." | Never provided anything to begin with
+const BACKEND_URL = import.meta.env.VITE_EXPRESS_BACKEND_URL;
+console.log(`${BACKEND_URL}/users/signin`);
 
 const signup = async (formData) => {
   try {
-    const res = await axios.get(`${BACKEND_URL}/users/signup`, formData);
-    console.log(res.data);
+    // We want to use ".post" not ".get"
+    const res = await axios.post(`${BACKEND_URL}/users/signup`, formData);
+    console.log(BACKEND_URL);
     if (res.data.error) {
       throw new Error(res.data.error);
     }
@@ -24,7 +27,8 @@ const signup = async (formData) => {
 
 const signin = async (formData) => {
   try {
-    const res = await axios.get(`${BACKEND_URL}/users/signin`, formData);
+    // We want to use ".post" not ".get"
+    const res = await axios.post(`${BACKEND_URL}/users/signin`, formData);
 
     if (res.data.error) {
       throw new Error(res.data.error);
